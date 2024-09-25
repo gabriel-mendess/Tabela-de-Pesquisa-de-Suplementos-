@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Suplementos - Saúde e Boa Forma</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f1f3f6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        /* Envolve a tabela em um contêiner com rolagem horizontal */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #00796b;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        td {
+            color: #555;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #e0f7fa;
+            transition: background-color 0.3s ease;
+        }
+        .highlight {
+            background-color: #fff9c4;
+            font-weight: bold;
+        }
+        @media screen and (max-width: 768px) {
+            h2 {
+                font-size: 20px;
+            }
+            button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            th, td {
+                padding: 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h2>Tabela de Pesquisa de Suplementos - Saúde e Boa Forma</h2>
+
+<!-- Botão para ordenar a tabela -->
+<button onclick="ordenarTabela()">Ordenar do Maior para o Menor</button>
+
+<!-- Contêiner para permitir rolagem horizontal em telas menores -->
+<div class="table-container">
+    <table id="suplementos-table">
+        <thead>
+            <tr>
+                <th>Posição</th>
+                <th>Produto</th>
+                <th>Volume de Pesquisa</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="highlight">
+                <td>1</td>
+                <td>Creatina</td>
+                <td>1500000</td>
+            </tr>
+            <tr class="highlight">
+                <td>2</td>
+                <td>Whey Protein</td>
+                <td>673000</td>
+            </tr>
+            <tr class="highlight">
+                <td>3</td>
+                <td>Ômega-3</td>
+                <td>368000</td>
+            </tr>
+            <tr class="highlight">
+                <td>4</td>
+                <td>Vitamina B12</td>
+                <td>450000</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Termogênicos</td>
+                <td>110000</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Cromo Picolinato</td>
+                <td>110000</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>BCAA</td>
+                <td>74000</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>C Vitamina</td>
+                <td>201000</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Cafeína</td>
+                <td>49500</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Psyllium</td>
+                <td>22200</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Pimenta Caiena</td>
+                <td>22200</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>L-carnitina</td>
+                <td>18100</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>Ioimbina</td>
+                <td>135000</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>Epicatequina</td>
+                <td>12100</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>Gengibre em Pó</td>
+                <td>9900</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>Capsaicina</td>
+                <td>4400</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Função para formatar os números na tabela
+    function formatarNumerosTabela() {
+        const tabela = document.getElementById('suplementos-table');
+        const linhas = tabela.getElementsByTagName('tr');
+
+        for (let i = 1; i < linhas.length; i++) {
+            const celulaVolume = linhas[i].cells[2];
+            let volumeTexto = celulaVolume.textContent;
+
+            const volumeFormatado = volumeTexto.replace(/,/g, '');
+            celulaVolume.textContent = volumeFormatado;
+        }
+    }
+
+    // Função para ordenar a tabela do maior para o menor
+    function ordenarTabela() {
+        const tabela = document.getElementById('suplementos-table').getElementsByTagName('tbody')[0];
+        const linhas = Array.from(tabela.getElementsByTagName('tr'));
+
+        linhas.sort((a, b) => {
+            const valorA = parseInt(a.cells[2].textContent);
+            const valorB = parseInt(b.cells[2].textContent);
+            return valorB - valorA;
+        });
+
+        linhas.forEach(linha => tabela.appendChild(linha));
+    }
+
+    // Chama a função de formatação ao carregar a página
+    document.addEventListener('DOMContentLoaded', formatarNumerosTabela);
+</script>
+
+</body>
+</html>
